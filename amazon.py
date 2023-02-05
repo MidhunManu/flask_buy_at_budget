@@ -7,7 +7,6 @@ def amazon_scraping(product_name):
   amazon_product_name = product_name.replace(" ", "+")
   amazon_url = f"https://www.amazon.in/s?k={amazon_product_name}"
   data = []
-  result = {}
 
   r = requests.get(amazon_url, headers=headers)
   html_content = r.content
@@ -23,6 +22,5 @@ def amazon_scraping(product_name):
       data.append({"names":names, "price":prices[i].text, "url":"https://www.amazon.in"+links[i].get("href"), "company":"amazon"})
   except:
     pass
-    
-  amazon_json_data = data
-  return amazon_json_data
+
+  return data
