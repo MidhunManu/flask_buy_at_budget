@@ -10,7 +10,7 @@ def trips_scraping(start_location, end_location, departure_day):
   day = departure_day[2];
   date = f"{year}/{month}/{day}"
   
-  trips_url = f"https://www.google.com/search?q=cheapest+flight+from+{start_location}+to+{end_location}+on+{date}&oq=cheapest+flight+from+{start_location}+to+${end_location}&aqs=chrome..69i57.11745j0j4&sourceid=chrome&ie=UTF-8"
+  trips_url = f"https://www.google.com/search?q=cheapest+flight+from+{start_location}+to+{end_location}+on+{date}&oq=cheapest+flight+from+{start_location}+to+{end_location}&aqs=chrome..69i57.11745j0j4&sourceid=chrome&ie=UTF-8"
   r = requests.get(trips_url, headers=headers)
   html_content = r.content
   

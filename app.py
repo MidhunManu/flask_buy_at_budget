@@ -5,6 +5,8 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 
+
+
 @app.route('/')
 def hello_world():
    return render_template("shopping.html")
@@ -44,22 +46,11 @@ def getfares():
       trips_data = trips_scraping(start, destination, date)
       global trips_array
       trips_array = []
+
       
       for i in range(0, len(trips_data)):
          trips_array.append(trips_data[i])
    return render_template("flight_results.html")
-
-@app.route("/getFlightData", methods=['GET'])
-def sendtripsData():
-   return trips_array
-
-@app.route("/contact", methods=['POST'])
-def contactUs():
-   return render_template("contact.html")
-
-@app.route("/groceries", methods=['POST'])
-def groceries():
-   return render_template("groceries.html")
 
 @app.route("/findCheapestGroceries", methods=['POST'])
 def getCheapestGroceries():
@@ -74,9 +65,22 @@ def getCheapestGroceries():
             jio_mart_data.append(jio_mart_res[i])
    return render_template("groceries_result.html")
 
+@app.route("/getFlightData", methods=['GET'])
+def sendtripsData():
+   return trips_array
+
+@app.route("/contact", methods=['POST'])
+def contactUs():
+   return render_template("contact.html")
+
+@app.route("/groceries", methods=['POST'])
+def groceries():
+   return render_template("groceries.html")
+
+
 @app.route("/findGroceries", methods=['GET'])
 def jioMartSendData():
    return jio_mart_data
 
 if __name__ == '__main__':
-   app.run(host='0.0.0.0', debug=True)
+   app.run(host='0.0.0.0',port=7000, debug=True)
